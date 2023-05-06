@@ -8,8 +8,10 @@
   <div id="blogroll"></div>
   <script>
     (async () => {
+      const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
+      const FEED_URL = 'https://jregenstein.com/feed/';
       const parser = new RSSParser();
-      const feed = await parser.parseURL('https://jregenstein.com/feed/');
+      const feed = await parser.parseURL(CORS_PROXY + FEED_URL);
       const blogrollDiv = document.getElementById('blogroll');
       
       feed.items.forEach(item => {
