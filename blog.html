@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blogroll</title>
+  <script src="https://cdn.jsdelivr.net/npm/rss-parser/dist/rss-parser.min.js"></script>
+</head>
+<body>
+  <div id="blogroll"></div>
+  <script>
+    (async () => {
+      const parser = new RSSParser();
+      const feed = await parser.parseURL('https://jregenstein.com/feed/');
+      const blogrollDiv = document.getElementById('blogroll');
+      
+      feed.items.forEach(item => {
+        const postDiv = document.createElement('div');
+        const postTitle = document.createElement('h3');
+        const postLink = document.createElement('a');
+        
+        postLink.href = item.link;
+        postLink.textContent = item.title;
+        postTitle.appendChild(postLink);
+        postDiv.appendChild(postTitle);
+        blogrollDiv.appendChild(postDiv);
+      });
+    })();
+  </script>
+</body>
+</html>
