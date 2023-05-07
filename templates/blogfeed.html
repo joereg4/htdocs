@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Blog Feed</title>
+  </head>
+  <body>
+    <h1>{{ title }}</h1>
+    <ul>
+      {% for entry in entries %}
+        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
