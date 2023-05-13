@@ -20,3 +20,14 @@ WantedBy=multi-user.target
 
 #Source
 source ~/env/webenv/bin/activate
+
+#NGINX
+server {
+  listen 80;
+  server_name 45.32.193.31;
+  
+  location / {
+    include proxy_params;
+    proxy_pass http://unix:/home/joe/site/website.sock;
+   }
+ }
