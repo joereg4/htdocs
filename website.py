@@ -16,5 +16,13 @@ def blogfeed():
     # Pass the feed title and entries to the template
     return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
 
+@app.route('/now/')
+def now():
+    # Parse the RSS feed
+    feed = feedparser.parse('http://jregenstein.com/feed')
+
+    # Pass the feed title and entries to the template
+    return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
