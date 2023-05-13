@@ -8,9 +8,15 @@ After=network.target
 [Service]
 User=joe
 Group=www-data
-WorkingDirectory=/home/joe/hike
-Environment="PATH=/home/joe/env/teton/bin"
-ExecStart=/home/joe/env/teton/bin/gunicorn --workers 3 --bind unix:website.sock -m 007 wsgi:app
+WorkingDirectory=/home/joe/site
+Environment="PATH=/home/joe/env/webenv/bin"
+ExecStart=/home/joe/env/webenv/bin/gunicorn --workers 3 --bind unix:website.sock -m 007 wsgi:app
 
 [Install]
 WantedBy=multi-user.target
+
+
+
+
+#Source
+source ~/env/webenv/bin/activate
