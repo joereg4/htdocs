@@ -32,6 +32,13 @@ source ~/env/webenv/bin/activate
 ```
 
 ## NGINX
+
+### nginx.con
+```
+
+```
+
+### sites-available
 ```
 server {
         listen 80;
