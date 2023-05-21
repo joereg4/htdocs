@@ -2,62 +2,56 @@
 <html>
 <head>
     {% block head %}
-    <meta charset="utf-8">
-    <title>Joe Regenstein | joereg4.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('static',filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"
-            media="screen,projection"/>
+        <meta charset="utf-8">
+        <title>Joe Regenstein | joereg4.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="{{ url_for('static',filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"
+              media="screen,projection"/>
     {% endblock %}
 </head>
 <body>
-    <nav>
-        <div class="nav-wrapper black">
-            <ul class="left hide-on-med-and-down">
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('blogfeed') }}">Blog</a></li>
-                <li><a href="{{ url_for('social') }}">Social</a></li>
-                <li><a href="{{ url_for('now') }}">Now</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div id="content">
-        {% block content %}
-        {% endblock %}
+<nav>
+    <div class="nav-wrapper black">
+        <ul class="left hide-on-med-and-down">
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('blogfeed') }}">Blog</a></li>
+            <li><a href="{{ url_for('social') }}">Social</a></li>
+            <li><a href="{{ url_for('now') }}">Now</a></li>
+        </ul>
     </div>
-    <div id="footer">
-    {% block footer %}
-    <!--FOOTER-->
-    <footer class="page-footer black">
-        <div class="container">
-        <div class="row">
-        <div class="col l6 s12">
-        <h5 class="white-text">{{ site_title}}</h5>
-
-        <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's
-        our full time job.</p>
-        </div>
-        <div class="col l3 s12">
-        <h5 class="white-text">Languages</h5>
-            <ul>
-                <li><a class="white-text" href="#!">Javascript</a></li>
-                <li><a class="white-text" href="#!">PHP</a></li>
-                <li><a class="white-text" href="#!">Java</a></li>
-                <li><a class="white-text" href="#!">C#</a></li>
-            </ul>
-        </div>
-        <div class="col l3 s12">
-        <h5 class="white-text">Connect</h5>
-            <ul>
-                <li><a class="white-text" href="#!">Facebook</a></li>
-                <li><a class="white-text" href="#!">Twitter</a></li>
-                <li><a class="white-text" href="#!">Google Plus</a></li>
-                <li><a class="white-text" href="#!">LinkedIn</a></li>
-            </ul>
-        </div>
-        </div>
-        </div>
-    </footer>
+</nav>
+<div id="content">
+    {% block content %}
     {% endblock %}
-    </div>
+</div>
+<div id="footer">
+    {% block footer %}
+        <!--FOOTER-->
+        <footer class="page-footer black">
+            <div class="container">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">{{ site_title }}</h5>
+
+                        <p class="grey-text text-lighten-4">"Joseph Regenstein IV: Tech-savvy financial manager, operations
+                            efficiency author, and lifelong learner at the intersection of family, outdoor adventures,
+                            and the future of AI."</p>
+                    </div>
+                    <div class="col l3 s12">
+                        <h5 class="white-text">Connect</h5>
+                        <ul>
+                            <li><a class="white-text" href="https://www.linkedin.com/in/josephregenstein/">LinkedIn</a>
+                            </li>
+                            <li><a class="white-text" href="https://substack.com/profile/58849485-joe-r">Substack</a>
+                            </li>
+                            <li><a class="white-text" href="https://iris.to/nemesis4212">Nostr</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    {% endblock %}
+</div>
 </body>
 </html>
