@@ -5,7 +5,7 @@ import feedparser
 app = Flask(__name__)
 
 @app.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 @app.route('/blog/')
@@ -16,13 +16,21 @@ def blogfeed():
     # Pass the feed title and entries to the template
     return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
 
+@app.route('/social/')
+def social():
+    # Parse the RSS feed
+    feed = feedparser.parse('http://jregenstein.com/feed')
+
+    # Pass the feed title and entries to the template
+    return render_template('social.html')
+
 @app.route('/now/')
 def now():
     # Parse the RSS feed
     feed = feedparser.parse('http://jregenstein.com/feed')
 
     # Pass the feed title and entries to the template
-    return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
+    return render_template('now.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
