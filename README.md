@@ -4,7 +4,7 @@
 2. cd /home/joe/site
 3. git pull
 4. sudo systemctl restart website
-5. sudo systemctl status website
+5. sudo systemctl check website
 
 
 ## website.service
