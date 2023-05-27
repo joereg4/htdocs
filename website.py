@@ -20,20 +20,17 @@ def blogfeed():
 
 @app.route('/social/')
 def social():
-    # Parse the RSS feed
-    feed = feedparser.parse('http://jregenstein.com/feed')
-
-    # Pass the feed title and entries to the template
     return render_template('social.html')
 
 
 @app.route('/now/')
 def now():
-    # Parse the RSS feed
-    feed = feedparser.parse('http://jregenstein.com/feed')
-
-    # Pass the feed title and entries to the template
     return render_template('now.html')
+
+
+@app.route('/book/')
+def book():
+    return render_template('book.html')
 
 
 if __name__ == '__main__':
