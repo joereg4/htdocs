@@ -5,21 +5,34 @@
         <meta charset="utf-8">
         <title>Joe Regenstein | joereg4.com</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="{{ url_for('static',filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet"
-              media="screen,projection"/>
+        <link href="{{ url_for('static',filename='css/materialize.min.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <style>
+            .header-image {
+                position: relative;
+            }
+
+            .header-image img {
+                width: 100%;
+                display: block;
+                margin-bottom: -0px; /* Adjust the value as needed */
+            }
+            </style>
     {% endblock %}
 </head>
 <body>
-<nav>
-    <div class="nav-wrapper black">
-        <ul class="left hide-on-med-and-down">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('blogfeed') }}">Blog</a></li>
-            <li><a href="{{ url_for('social') }}">Social</a></li>
-            <li><a href="{{ url_for('now') }}">Now</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="header-image">
+    <img src="{{ url_for('static', filename='images/Mountain Landscape Header.png') }}" alt="Header Image">
+    <nav>
+        <div class="nav-wrapper black">
+            <ul class="left hide-on-med-and-down">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('blogfeed') }}">Blog</a></li>
+                <li><a href="{{ url_for('social') }}">Social</a></li>
+                <li><a href="{{ url_for('now') }}">Now</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 <div id="content">
     {% block content %}
     {% endblock %}
@@ -40,12 +53,9 @@
                     <div class="col l3 s12">
                         <h5 class="white-text">Connect</h5>
                         <ul>
-                            <li><a class="white-text" href="https://www.linkedin.com/in/josephregenstein/">LinkedIn</a>
-                            </li>
-                            <li><a class="white-text" href="https://substack.com/profile/58849485-joe-r">Substack</a>
-                            </li>
-                            <li><a class="white-text" href="https://iris.to/nemesis4212">Nostr</a>
-                            </li>
+                            <li><a class="white-text" href="https://www.linkedin.com/in/josephregenstein/">LinkedIn</a></li>
+                            <li><a class="white-text" href="https://substack.com/profile/58849485-joe-r">Substack</a></li>
+                            <li><a class="white-text" href="https://iris.to/nemesis4212">Nostr</a></li>
                         </ul>
                     </div>
                 </div>
