@@ -34,4 +34,7 @@ def book():
 
 
 if __name__ == '__main__':
+    app.config['ENV'] = 'development'
+    app.config['DEBUG'] = True
+    app.config['TESTING'] = True
     app.run(host='0.0.0.0', port=5000)

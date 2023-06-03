@@ -2,13 +2,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <main class="container">
-        <h1>Blog Feed</h1>
-    <a href="http://jregenstein.com">jregenstein.com</a>
+    <h5>Blog feed from <a href="http://jregenstein.com">jregenstein.com</a></h5>
     <ul>
         {% for entry in entries %}
-        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+            <p><li><a href="{{ entry.link }}">{{ entry.title }}</a></li></p>
         {% endfor %}
     </ul>
-    </main>
 {% endblock %}
