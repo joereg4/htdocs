@@ -1,16 +1,32 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, g, request, make_response
 import feedparser
+from counter import counter
+import uuid
 
 app = Flask(__name__)
 
 
+@app.before_request
+def before_request():
+    visitor_id = request.cookies.get('visitor_id')
+    if not visitor_id:
+        visitor_id = str(uuid.uuid4())
+        g.visitor_id = visitor_id
+        resp = make_response()
+        resp.set_cookie('visitor_id', visitor_id)
+    else:
+        g.visitor_id = visitor_id
+
+
 @app.route('/')
 def home():
+    counter.increment('home', g.visitor_id)
     return render_template('index.html')
 
 
 @app.route('/blog/')
 def blogfeed():
+    counter.increment('blog', g.visitor_id)
     # Parse the RSS feed
     feed = feedparser.parse('http://jregenstein.com/feed')
 
@@ -20,17 +36,31 @@ def blogfeed():
 
 @app.route('/social/')
 def social():
+    counter.increment('social', g.visitor_id)
     return render_template('social.html')
 
 
 @app.route('/now/')
 def now():
+    counter.increment('now', g.visitor_id)
     return render_template('now.html')
 
 
 @app.route('/book/')
 def book():
+    counter.increment('book', g.visitor_id)
     return render_template('book.html')
+
+
+@app.route('/counts/')
+def counts():
+    counts = dict(counter.counter)
+    return render_template('counts.html', counts=counts)
+
+
+@app.route('/data')
+def data():
+    return counter.get_daily_visits()
 
 
 if __name__ == '__main__':
