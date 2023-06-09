@@ -7,6 +7,9 @@ name = "pypi"
 flask = "*"
 feedparser = "*"
 gunicorn = "*"
+sqlalchemy = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
