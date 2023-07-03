@@ -1,9 +1,16 @@
-from flask import Flask, render_template, g, request, make_response
+import os
+from flask import Flask, render_template, g, request, make_response, jsonify
 import feedparser
 from counter import counter
 import uuid
+from pymongo import MongoClient
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
+client = MongoClient(os.environ.get("MONGODB_URI"))
+app.db = client.get_default_database()
 
 
 @app.before_request
@@ -54,13 +61,14 @@ def book():
 
 @app.route('/counts/')
 def counts():
-    counts = dict(counter.counter)
+    counts = {doc['page']: {'count': doc['count'], 'unique_visitors': len(doc['unique_visitors'])} for doc in
+              counter.pages.find()}
     return render_template('counts.html', counts=counts)
 
 
 @app.route('/data')
 def data():
-    return counter.get_daily_visits()
+    return jsonify(counter.get_daily_visits())
 
 
 if __name__ == '__main__':

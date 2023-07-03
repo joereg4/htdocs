@@ -1,32 +1,40 @@
-from collections import defaultdict
-import threading
+import os
 from datetime import datetime
+
+from dotenv import load_dotenv
+from pymongo import MongoClient
+
+load_dotenv()
 
 
 class Counter:
     def __init__(self):
-        self.lock = threading.Lock()
-        self.counter = defaultdict(int)
-        self.unique_visitors = defaultdict(set)  # store unique visitors
-        self.daily_visits = defaultdict(int)  # store daily visits
+        self.client = MongoClient(os.environ.get("MONGODB_URI"))
+        self.db = self.client.get_default_database()
+        self.pages = self.db.pages
+        self.visits = self.db.visits
 
     def increment(self, page, visitor_id):
-        with self.lock:
-            self.counter[page] += 1
-            self.unique_visitors[page].add(visitor_id)
-            self.daily_visits[str(datetime.now().date())] += 1
+        self.pages.update_one(
+            {'page': page},
+            {'$inc': {'count': 1}, '$addToSet': {'unique_visitors': visitor_id}},
+            upsert=True)
+        self.visits.update_one(
+            {'date': str(datetime.now().date())},
+            {'$inc': {'count': 1}},
+            upsert=True)
 
     def get_count(self, page):
-        with self.lock:
-            return self.counter[page]
+        doc = self.pages.find_one({'page': page})
+        return doc['count'] if doc else 0
 
     def get_unique_visitors(self, page):
-        with self.lock:
-            return len(self.unique_visitors[page])
+        doc = self.pages.find_one({'page': page})
+        return len(doc['unique_visitors']) if doc else 0
 
     def get_daily_visits(self):
-        with self.lock:
-            return dict(self.daily_visits)
+        daily_visits = {doc['date']: doc['count'] for doc in self.visits.find()}
+        return daily_visits
 
 
 counter = Counter()
