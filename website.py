@@ -53,6 +53,12 @@ def now():
     return render_template('now.html')
 
 
+@app.route('/merch/')
+def merch():
+    counter.increment('merch', g.visitor_id)
+    return render_template('merch.html')
+
+
 @app.route('/book/')
 def book():
     counter.increment('book', g.visitor_id)
