@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, g, request, make_response, jsonify
+from flask import Flask, render_template, g, request, make_response, jsonify, redirect
 import feedparser
 from counter import counter
 import uuid
@@ -35,10 +35,11 @@ def home():
 def blogfeed():
     counter.increment('blog', g.visitor_id)
     # Parse the RSS feed
-    feed = feedparser.parse('http://jregenstein.com/feed')
+    #feed = feedparser.parse('http://jregenstein.com/feed')
 
     # Pass the feed title and entries to the template
-    return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
+    #return render_template('blogfeed.html', title=feed.feed.title, entries=feed.entries)
+    return redirect("https://blog.joereg4.com", code=301)
 
 
 @app.route('/social/')
