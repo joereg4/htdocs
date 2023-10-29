@@ -11,6 +11,19 @@
           media="screen,projection"/>
     <link href="{{ url_for('static',filename='css/style.css') }}" type="text/css" rel="stylesheet"
           media="screen,projection"/>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMCECGPJRG"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-YMCECGPJRG');
+    </script>
 </head>
 <body>
 <nav class="white" role="navigation">
@@ -55,17 +68,17 @@
 </div>
 
 
-  <div class="container">
+<div class="container">
     <div class="section">
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 dark-blue-text">
-                       <h5> {% block content %}
-                        {% endblock %}</h5>
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 dark-blue-text">
+                <h5> {% block content %}
+                {% endblock %}</h5>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
 <div class="parallax-container valign-wrapper">
